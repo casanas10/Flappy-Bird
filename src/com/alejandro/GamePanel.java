@@ -2,6 +2,7 @@ package com.alejandro;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
 
@@ -9,10 +10,12 @@ public class GamePanel extends JPanel {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 800;
 
-    private Rectangle bird = new Rectangle(WIDTH / 2 -10, HEIGHT/2-10, 20,20);
+    private Bird bird = new Bird();
+    private ArrayList<Pipe> pipes = new ArrayList<>();
 
-    GamePanel() {
-
+    GamePanel(Bird bird, ArrayList<Pipe> pipes) {
+        this.bird = bird;
+        this.pipes = pipes;
     }
 
     //where all the painting occurs
@@ -29,8 +32,12 @@ public class GamePanel extends JPanel {
         g.setColor(Color.green);
         g.fillRect(0, HEIGHT - 150, WIDTH, 20);
 
-        g.setColor(Color.red);
-        g.fillRect(bird.x, bird.y, bird.width, bird.height);
+        bird.paintBird(g);
+
+        for (Pipe pipe: pipes){
+
+            pipe.paintPipe(g);
+        }
 
     }
 
