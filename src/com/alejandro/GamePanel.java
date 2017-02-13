@@ -34,9 +34,27 @@ public class GamePanel extends JPanel {
 
         bird.paintBird(g);
 
-        for (Pipe pipe: pipes){
+        for (int i = 0; i < pipes.size(); i++){
 
+            Pipe pipe = pipes.get(i);
+            pipe.movePipe();
             pipe.paintPipe(g);
+
+//            if (pipe.getxPosition() < 0 - 100){
+//
+//                pipes.remove(i);
+//                System.out.println("deleted");
+//
+//
+//            }
+//
+//            if (pipe.getxPosition() < WIDTH/2){
+//
+//                pipes.add(new Pipe(800, 0));
+//                pipes.add(new Pipe(800, 800-150-200));
+//                System.out.println("added");
+//            }
+
         }
 
     }

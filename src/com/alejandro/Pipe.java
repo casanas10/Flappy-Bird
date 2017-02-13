@@ -9,19 +9,14 @@ public class Pipe {
     private int xPosition;
     private int yPosition;
     private int width = 100;
-    private int height;
+    private int height = 200;
+    private int speed = 5;
 
-    private int speed = 3;
+    Pipe(int xPosition, int yPosition){
 
-//    public void paintTopPipe(Graphics g){
-//        g.setColor(Color.green.darker());
-//        g.fillRect(600, 0, width, height);
-//    }
-//
-//    public void paintBottomPipe(Graphics g){
-//        g.setColor(Color.green.darker());
-//        g.fillRect(600, 800-150-height, width, height);
-//    }
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+    }
 
     public void setxPosition(int x){
         this.xPosition = x;
@@ -47,5 +42,9 @@ public class Pipe {
 
         g.setColor(Color.green.darker());
         g.fillRect(xPosition, yPosition, width, height);
+    }
+
+    public int getxPosition() {
+        return xPosition;
     }
 }

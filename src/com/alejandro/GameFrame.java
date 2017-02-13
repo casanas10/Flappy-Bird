@@ -1,7 +1,6 @@
 package com.alejandro;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -11,14 +10,15 @@ public class GameFrame implements ActionListener, KeyListener {
     private JFrame frame;
     private GamePanel panel;
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 800;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 800;
     private final int FPS = 60;
 
     private Bird bird = new Bird();
     private ArrayList<Pipe> pipes = new ArrayList<>();
 
     private Timer timer;
+    private int ticks = 0;
 
 
     GameFrame(){
@@ -37,11 +37,7 @@ public class GameFrame implements ActionListener, KeyListener {
         timer = new Timer(1000/FPS, this);
         timer.start();
 
-        pipes.add(new Pipe());
-        pipes.add(new Pipe());
-
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -60,13 +56,18 @@ public class GameFrame implements ActionListener, KeyListener {
             bird.setGravityForce(0);
         }
 
-        for (int i = 0; i < pipes.size(); i++){
 
-            Pipe pipe = pipes.get(i);
-            pipe.movePipe();
+        ticks++;
+        if (ticks == 120){
+            pipes.add(new Pipe(800, 0));
+            pipes.add(new Pipe(800, 800-150-200));
+            ticks = 0;
         }
 
+
         panel.repaint();
+
+
 
     }
 

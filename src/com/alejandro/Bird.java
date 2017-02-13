@@ -11,16 +11,14 @@ public class Bird {
     private Rectangle bird;
 
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 800;
-
-    private int xPosition = WIDTH / 2 - 10;
-    private int yPosition = HEIGHT / 2 - 10;
+    private int xPosition = GameFrame.WIDTH / 2 - 10;
+    private int yPosition = GameFrame.HEIGHT / 2 - 10;
     private int width = 40;
     private int height = 40;
 
     private double gravityForce = 0.6;
-    private int lift = -15;
+    private final double AIR_RESITANCE = 0.9;
+    private final int LIFT = -15;
     private double velocity = 0;
 
     Bird(){
@@ -39,11 +37,9 @@ public class Bird {
     public int getYPosition(){
         return yPosition;
     }
-
     public double getVelocity(){
         return velocity;
     }
-
     public void setYPosition(int y){
         this.yPosition = y;
     }
@@ -54,17 +50,14 @@ public class Bird {
         this.gravityForce = g;
     }
 
-
     public void jump(){
-        velocity += lift;
+        velocity += LIFT;
     }
 
     public void gravity(){
-
         velocity += gravityForce;
-        velocity *= 0.9;  //air resistance
+        velocity *= AIR_RESITANCE;
         yPosition += (int)velocity;
-
     }
 
     public void paintBird(Graphics g){
