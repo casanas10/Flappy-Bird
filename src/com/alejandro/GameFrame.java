@@ -1,5 +1,8 @@
 package com.alejandro;
 
+import com.alejandro.Model.Bird;
+import com.alejandro.Model.Pipe;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -45,7 +48,7 @@ public class GameFrame implements ActionListener, KeyListener {
         bird.gravity();
 
         if (bird.getYPosition() > HEIGHT - 120){
-            bird.setYPosition(HEIGHT - 120 - bird.getHeight());
+            bird.setYPosition((int) (HEIGHT - 120 - bird.getHeight()));
             bird.setVelocity(0);
             bird.setGravityForce(0);
         }

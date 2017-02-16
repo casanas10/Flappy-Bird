@@ -1,5 +1,8 @@
 package com.alejandro;
 
+import com.alejandro.Model.Bird;
+import com.alejandro.Model.Pipe;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
