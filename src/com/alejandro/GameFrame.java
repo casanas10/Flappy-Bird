@@ -47,13 +47,13 @@ public class GameFrame implements ActionListener, KeyListener {
 
         bird.gravity();
 
-        if (bird.getYPosition() > HEIGHT - 120){
+        if (bird.getY() > HEIGHT - 120){
             bird.setYPosition((int) (HEIGHT - 120 - bird.getHeight()));
             bird.setVelocity(0);
             bird.setGravityForce(0);
         }
 
-        if (bird.getYPosition() < 0){
+        if (bird.getY() < 0){
             bird.setYPosition(0);
             bird.setVelocity(0);
             bird.setGravityForce(0);

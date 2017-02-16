@@ -8,9 +8,9 @@ public class Bird extends Rectangle{
 
     private Rectangle bird;
 
-    private double gravityForce = 0.6;
     private final double AIR_RESITANCE = 0.9;
     private final int LIFT = -15;
+    private double gravityForce = 0.6;
     private double velocity = 0;
 
     public Bird(){
@@ -26,12 +26,6 @@ public class Bird extends Rectangle{
     }
     public double getHeight(){
         return height;
-    }
-    public int getXPosition(){
-        return x;
-    }
-    public int getYPosition(){
-        return y;
     }
     public double getVelocity(){
         return velocity;
@@ -56,10 +50,6 @@ public class Bird extends Rectangle{
         y += (int)velocity;
     }
 
-    public void paintBird(Graphics g){
-        g.setColor(Color.red);
-        g.fillRect(x, y, width, height);
-    }
 
 
 

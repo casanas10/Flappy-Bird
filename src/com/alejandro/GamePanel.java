@@ -2,6 +2,7 @@ package com.alejandro;
 
 import com.alejandro.Model.Bird;
 import com.alejandro.Model.Pipe;
+import com.alejandro.View.BirdView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,11 +10,13 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
 
+    BirdView birdView = new BirdView();
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 800;
 
     private Bird bird = new Bird();
+
     private ArrayList<Pipe> pipes = new ArrayList<>();
 
     GamePanel(Bird bird, ArrayList<Pipe> pipes) {
@@ -35,7 +38,8 @@ public class GamePanel extends JPanel {
         g.setColor(Color.green);
         g.fillRect(0, HEIGHT - 150, WIDTH, 20);
 
-        bird.paintBird(g);
+
+        birdView.updateBirdPosition(g, bird);
 
         for (int i = 0; i < pipes.size(); i++){
 
