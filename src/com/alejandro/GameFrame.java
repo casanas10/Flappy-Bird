@@ -6,28 +6,22 @@ import com.alejandro.Model.Pipe;
 import com.alejandro.View.BirdView;
 
 import javax.swing.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 
 
-public class GameFrame implements ActionListener {
+public class GameFrame {
     
     private JFrame frame;
     private GamePanel panel;
 
     public static final int WIDTH = 800;
     public static final int HEIGHT = 800;
-    private final int FPS = 60;
 
     private Bird bird = new Bird();
     private BirdView birdView = new BirdView();
     private BirdController birdController = new BirdController(bird, birdView);
 
     private ArrayList<Pipe> pipes = new ArrayList<>();
-
-    private Timer timer;
-    private int ticks = 0;
-
 
     GameFrame(){
 
@@ -41,43 +35,6 @@ public class GameFrame implements ActionListener {
         panel = new GamePanel(bird, pipes);
         frame.add(panel);
 
-
-        timer = new Timer(1000/FPS, this);
-        timer.start();
-
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        bird.gravity();
-
-        if (bird.getY() > HEIGHT - 120){
-            bird.setYPosition((int) (HEIGHT - 120 - bird.getHeight()));
-            bird.setVelocity(0);
-            bird.setGravityForce(0);
-        }
-
-        if (bird.getY() < 0){
-            bird.setYPosition(0);
-            bird.setVelocity(0);
-            bird.setGravityForce(0);
-        }
-
-
-        ticks++;
-        if (ticks == 120){
-            pipes.add(new Pipe(800, 0));
-            pipes.add(new Pipe(800, 800-150-200));
-            ticks = 0;
-        }
-
-
-        panel.repaint();
-
-
-
-    }
-
 
 }

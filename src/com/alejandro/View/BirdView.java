@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class BirdView {
 
-    public void updateBirdPosition(Bird bird, Graphics g){
+    public void paintBird(Bird bird, Graphics g){
         g.setColor(Color.red);
         g.fillRect(bird.x, bird.y,bird.width, bird.height);
     }

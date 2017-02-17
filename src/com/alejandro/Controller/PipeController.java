@@ -12,7 +12,7 @@ public class PipeController {
         for (int i = 0; i < pipes.size(); i++) {
             Pipe pipe = pipes.get(i);
             pipe.movePipe();
-            pipeView.updatePipePosition(pipe, g);
+            pipeView.paintPipe(pipe, g);
         }
     }
 

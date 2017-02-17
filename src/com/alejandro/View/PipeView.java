@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class PipeView {
 
-    public void updatePipePosition(Pipe pipe, Graphics g){
+    public void paintPipe(Pipe pipe, Graphics g){
         g.setColor(Color.green.darker());
         g.fillRect(pipe.x, pipe.y, pipe.width, pipe.height);
     }
