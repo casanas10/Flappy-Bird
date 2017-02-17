@@ -48,7 +48,12 @@ public class Bird extends Rectangle{
         y += (int)velocity;
     }
 
-
+    public boolean isAlive(){
+        if (velocity == 0)
+            return false;
+        else
+            return true;
+    }
 
 
 }

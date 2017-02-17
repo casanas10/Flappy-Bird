@@ -15,9 +15,6 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements ActionListener {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 800;
-
     private Bird bird;
     BirdView birdView = new BirdView();
     private BirdController birdController = new BirdController(bird, birdView);
@@ -44,46 +41,66 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
 
-        g.setColor(Color.cyan);
-        g.fillRect(0,0,WIDTH,HEIGHT);
-
-        g.setColor(Color.orange);
-        g.fillRect(0, HEIGHT - 150, WIDTH, 150);
-
-        g.setColor(Color.green);
-        g.fillRect(0, HEIGHT - 150, WIDTH, 20);
-
-
+        paintBackground(g);
         birdView.paintBird(bird, g);
         pipeController.SpawnPipes(pipes, pipeView, g);
+    }
+
+    private void paintBackground(Graphics g) {
+
+        //background color
+        g.setColor(Color.cyan);
+        g.fillRect(0,0, GameFrame.WIDTH,GameFrame.HEIGHT);
+
+        //dirt
+        g.setColor(Color.orange);
+        g.fillRect(0, GameFrame.HEIGHT - 150, GameFrame.WIDTH, 150);
+
+        //grass
+        g.setColor(Color.green);
+        g.fillRect(0, GameFrame.HEIGHT - 150, GameFrame.WIDTH, 20);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        bird.gravity();
+        if (isGameOver()){
 
-        if (bird.getY() > HEIGHT - 120){
-            bird.setYPosition((int) (HEIGHT - 120 - bird.getHeight()));
-            bird.setVelocity(0);
-            bird.setGravityForce(0);
+            System.out.println("Game Over");
+
+        } else {
+
+            if (bird.isAlive()){
+                bird.gravity();
+            }
+
+            ticks++;
+            if (ticks % 120 == 0){
+                pipes.add(new Pipe(800, 0));
+                pipes.add(new Pipe(800, 800-150-200));
+            }
+
+            this.repaint();
         }
 
-        if (bird.getY() < 0){
+
+    }
+
+    private boolean isGameOver() {
+        if (bird.getY() > GameFrame.HEIGHT - 120){
+            bird.setYPosition((int) (GameFrame.HEIGHT - 120 - bird.getHeight()));
+            bird.setVelocity(0);
+            bird.setGravityForce(0);
+            return true;
+        } else if (bird.getY() < 0){
             bird.setYPosition(0);
             bird.setVelocity(0);
             bird.setGravityForce(0);
+            return true;
         }
 
-
-        ticks++;
-        if (ticks == 120){
-            pipes.add(new Pipe(800, 0));
-            pipes.add(new Pipe(800, 800-150-200));
-            ticks = 0;
-        }
-
-
-        this.repaint();
+        return false;
     }
+
+
 }
