@@ -1,14 +1,16 @@
 package com.alejandro;
 
+import com.alejandro.Controller.BirdController;
 import com.alejandro.Model.Bird;
 import com.alejandro.Model.Pipe;
+import com.alejandro.View.BirdView;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
 
-public class GameFrame implements ActionListener, KeyListener {
+public class GameFrame implements ActionListener {
     
     private JFrame frame;
     private GamePanel panel;
@@ -18,6 +20,9 @@ public class GameFrame implements ActionListener, KeyListener {
     private final int FPS = 60;
 
     private Bird bird = new Bird();
+    private BirdView birdView = new BirdView();
+    private BirdController birdController = new BirdController(bird, birdView);
+
     private ArrayList<Pipe> pipes = new ArrayList<>();
 
     private Timer timer;
@@ -31,7 +36,7 @@ public class GameFrame implements ActionListener, KeyListener {
         frame.setSize(WIDTH,HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.addKeyListener(this);
+        frame.addKeyListener(birdController);
 
         panel = new GamePanel(bird, pipes);
         frame.add(panel);
@@ -74,20 +79,5 @@ public class GameFrame implements ActionListener, KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
 
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_UP){
-            bird.jump();
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 }
