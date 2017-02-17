@@ -6,8 +6,6 @@ import java.awt.*;
 
 public class Bird extends Rectangle{
 
-    private Rectangle bird;
-
     private final double AIR_RESITANCE = 0.9;
     private final int LIFT = -15;
     private double gravityForce = 0.6;

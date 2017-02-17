@@ -4,8 +4,6 @@ import java.awt.*;
 
 public class Pipe extends Rectangle {
 
-    private Rectangle pipe;
-
     private int speed = 5;
 
     public Pipe(int x, int y){
@@ -19,7 +17,4 @@ public class Pipe extends Rectangle {
         x -= speed;
     }
 
-    public int getxPosition() {
-        return x;
-    }
 }
